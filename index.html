@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COPI — Artisanal Coffee & Brews</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #1A1615;
+            --bg-card: #26211E;
+            --bg-card-hover: #312A27;
+            --accent-cream: #F7EBE1;
+            --accent-gold: #D4A373;
+            --accent-amber: #FAEDCD;
+            --accent-warm: #E6CCB2;
+            --text-light: #F5F5F4;
+            --text-muted: #A8A29E;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(26, 22, 21, 0.90);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(212, 163, 115, 0.15);
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--accent-cream);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent-gold);
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 1.5rem;
+            background: linear-gradient(rgba(26, 22, 21, 0.75), rgba(26, 22, 21, 0.9)), 
+                        url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-subtitle {
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            font-size: 0.85rem;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(3rem, 6vw, 5.2rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--accent-cream);
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            max-width: 620px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.4rem;
+            background-color: var(--accent-gold);
+            color: var(--bg-dark);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-warm);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(212, 163, 115, 0.2);
+        }
+
+        /* Section Global Styling */
+        section {
+            padding: 7rem 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-title h2 {
+            font-family: var(--font-heading);
+            font-size: 2.8rem;
+            color: var(--accent-cream);
+        }
+
+        .section-title p {
+            color: var(--accent-gold);
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Banner Special */
+        .banner {
+            background: linear-gradient(135deg, #2D231E, #3D2D24);
+            border-radius: 20px;
+            padding: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 5rem;
+            border: 1px solid rgba(212, 163, 115, 0.3);
+        }
+
+        .banner-text h3 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--accent-amber);
+            margin-bottom: 0.5rem;
+        }
+
+        .banner-text p {
+            color: var(--text-muted);
+        }
+
+        .banner-price {
+            font-size: 2.2rem;
+            font-family: var(--font-heading);
+            color: var(--accent-gold);
+            font-weight: 700;
+        }
+
+        /* Menu Section & Tabs */
+        .menu-category-title {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: var(--accent-gold);
+            margin: 4rem 0 2rem 0;
+            border-bottom: 1px solid rgba(212, 163, 115, 0.2);
+            padding-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.2rem;
+        }
+
+        .menu-card {
+            background-color: var(--bg-card);
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-8px);
+            background-color: var(--bg-card-hover);
+            border-color: rgba(212, 163, 115, 0.4);
+        }
+
+        .menu-card-img-wrapper {
+            position: relative;
+            overflow: hidden;
+            height: 230px;
+        }
+
+        .menu-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .menu-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(26, 22, 21, 0.85);
+            backdrop-filter: blur(5px);
+            color: var(--accent-gold);
+            font-size: 0.75rem;
+            padding: 4px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(212, 163, 115, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .menu-card-content {
+            padding: 1.8rem;
+        }
+
+        .menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.6rem;
+        }
+
+        .menu-title {
+            font-family: var(--font-heading);
+            font-size: 1.35rem;
+            color: var(--accent-cream);
+        }
+
+        .menu-price {
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .menu-desc {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            line-height: 1.5;
+        }
+
+        /* About Section */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        }
+
+        .about-text h3 {
+            font-family: var(--font-heading);
+            font-size: 2.4rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-cream);
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background-color: #141110;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background-color: var(--bg-card);
+            padding: 2.2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .stars {
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-text {
+            color: var(--text-light);
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .author {
+            color: var(--accent-gold);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0F0D0C;
+            padding: 5rem 8% 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-heading);
+            color: var(--accent-cream);
+            font-size: 1.2rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-col p, .footer-col a {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.6rem;
+        }
+
+        .footer-col a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-logo {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            color: var(--accent-cream);
+            margin-bottom: 1rem;
+        }
+
+        .copyright {
+            text-align: center;
+            color: #666;
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+            .banner {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 1.2rem 5%;
+            }
+            nav a {
+                margin-left: 1rem;
+                font-size: 0.85rem;
+            }
+            section {
+                padding: 5rem 5%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Header -->
+    <header>
+        <a href="#" class="logo">COPI<span>.</span></a>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#menu">Menu</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#visit">Visit Us</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-subtitle">Crafted with Passion & Precision</div>
+            <h1>Savor the Art of Pure Coffee.</h1>
+            <p>Every bean tells a story. Step into COPI and experience artisanal small-batch brews, cozy ambiance, and freshly baked delights.</p>
+            <a href="#menu" class="btn">View Menu</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="about-container">
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=800&q=80" alt="COPI Cafe Interior">
+            </div>
+            <div class="about-text">
+                <h3>Designed for Coffee Enthusiasts</h3>
+                <p>At COPI, we believe coffee is more than just a morning routine—it's a warm ritual. We source ethically harvested, single-origin beans directly from sustainable farms and roast them in small batches to preserve their unique, vibrant notes.</p>
+                <p>Whether you need a serene spot to read, power through work, or enjoy a heartfelt conversation, COPI offers an aesthetic, relaxing sanctuary for every moment of your day.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu">
+        <div class="section-title">
+            <p>Handcrafted Offerings</p>
+            <h2>Explore Our Full Menu</h2>
+        </div>
+
+        <!-- Special Banner -->
+        <div class="banner">
+            <div class="banner-text">
+                <h3>Seasonal Special: Smoked Sea Salt Caramel Mocha</h3>
+                <p>Rich double shot espresso blended with dark Belgian chocolate, house caramel, and sea salt foam.</p>
+            </div>
+            <div class="banner-price">$6.75</div>
+        </div>
+
+        <!-- CATEGORY 1: Espresso & Coffee -->
+        <h3 class="menu-category-title">☕ Espresso & Coffee</h3>
+        <div class="menu-grid">
+            
+            <div class="menu-card">
+                <div class="menu-card-img-wrapper">
+                    <span class="tag">Signature</span>
+                    <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80" alt="Espresso">
+                </div>
+                <div class="menu-card-content">
+                    <div class="menu-header">
+                        <h4 class="menu-title">Velvet Double Espresso</h4>
+                        <span class="menu-price">$4.25</span>
+                    </div>
+                    <p class="menu-desc">Rich and thick body featuring complex notes of dark chocolate, hazelnut, and subtle plum acidity.</p>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-card-img-wrapper">
+                    <span class="tag">Popular</span>
+                    <img src="https://images.unsplash.com/photo-1576343209181-360ef7d9ad5c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8b2F0bWlsa3xlbnwwfHwwfHx8MA%3D%3D" alt="Latte">
+                </div>
+                <div class="menu-card-content">
+                    <div class="menu-header">
+                        <h4 class="menu-title">Madagascar Vanilla Oat Latte</h4>
+                        <span class="menu-price">$5.95</span>
+                    </div>
+                    <p class="menu-desc">Silky espresso infused with real Madagascar vanilla bean syrup and velvety micro-foamed oat milk.</p>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=600&q=80" alt="Pour Over">
+                </div>
+                <div class="menu-card-content">
+                    <div class="menu-header">
+                        <h4 class="menu-title">Single-Origin Pour Over</h4>
+                        <span class="menu-price">$6.25</span>
+                    </div>
+                    <p class="menu-desc">Hand-poured Ethiopian Yirgacheffe highlighting bright floral aromas and crisp bergamot notes.</p>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-card-img-wrapper">
+                    <span class="tag">Cold Brew</span>
+                    <img src="https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=600&q=80" alt="Cold Brew">
+                </div>
+                <div class="menu-card-content">
+                    <div class="menu-header">
+                        <h4 class="menu-title">Nitro Honey Cold Brew</h4>
+                        <span class="menu-price">$5.75</span>
+                    </div>
+                    <p class="menu-desc">Slow-steeped for 20 hours, infused with nitrogen for a creamy cascade texture, sweetened with raw honey.</p>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-card-img-wrapper">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c8/Cappuccino_at_Sightglass_Coffee.jpg?utm_source=pap.wikipedia.org&utm_campaign=index&utm_content=original" alt="Cappuccino">
+                </div>
+                <div class="menu-card-content">
+                    <div class="menu-header">
+                        <h4 class="menu-title">Classic Cappuccino</h4>
+                        <span class="menu-price">$4.95</span>
+                    </div>
+                    <p class="menu-desc">Equal parts rich espresso, steamed milk, and dense, velvety milk foam dusted with cocoa powder.</p>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=600&q=80" alt="Cortado">
+                </div>
+                <div class="menu-card-content">
+                    <div class="menu-header">
+                        <h4 class="menu-title">Spanish Cortado</h4>
+                        <span class="menu-price">$4.50</span>
+                    </div>
+                    <p class="menu-desc">Balanced 1:1 ratio of intense espresso cutting through warm, lightly textured whole milk.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- CATEGORY 2: Tea & Botanicals -->
+        <h3 class="menu-category-title">🍵 Artisan Teas & Elixirs</h3>
+        <div class="menu-grid">
+
+            <div class="menu-card">
+                <div class="menu-card-img-wrapper">
+                    <span class="tag">Best Seller</span>
+                    <img src="https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&w=600&q=80" alt="Matcha Latte">
+                </div>
+                <div class="menu-card-content">
+                    <div class="menu-header">
+                        <h4 class="menu-title">Ceremonial Uji Matcha Latte</h4>
+                        <span class="menu-price">$6.00</span>
+                    </div>
+                    <p class="menu-desc">First-harvest Japanese ceremonial grade matcha whisked with warm almond milk and agave blossom.</p>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=600&q=80" alt="Chai Latte">
+                </div>
+                <div class="menu-card-content">
+                    <div class="menu-header">
+                        <h4 class="menu-title">Spiced House Chai</h4>
+                        <span class="menu-price">$5.50</span>
+                    </div>
+                    <p class="menu-desc">Slow-simmered black tea with cinnamon, ginger, cardamom, black pepper, and frothed milk.</p>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1597481499750-3e6b22637e12?auto=format&fit=crop&w=600&q=80" alt="Herbal Tea">
+                </div>
+                <div class="menu-card-content">
+                    <div class="menu-header">
+                        <h4 class="menu-title">Lavender Chamomile Infusion</h4>
+                        <span class="menu-price">$4.75</span>
+                    </div>
+                    <p class="menu-desc">A soothing blend of organic French lavender buds, Egyptian chamomile, and lemongrass.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- CATEGORY 3: Fresh Bakery -->
+        <h3 class="menu-category-title">🥐 Fresh Pastries & Bakery</h3>
+        <div class="menu-grid">
+
+            <div class="menu-card">
+                <div class="menu-card-img-wrapper">
+                    <span class="tag">Fresh Baked</span>
+                    <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=80" alt="Butter Croissant">
+                </div>
+                <div class="menu-card-content">
+                    <div class="menu-header">
+                        <h4 class="menu-title">Artisan Butter Croissant</h4>
+                        <span class="menu-price">$3.95</span>
+                    </div>
+                    <p class="menu-desc">Flaky, golden, multi-layered French croissant baked fresh every morning with Normandy butter.</p>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?auto=format&fit=crop&w=600&q=80" alt="Almond Croissant">
+                </div>
+                <div class="menu-card-content">
+                    <div class="menu-header">
+                        <h4 class="menu-title">Toasted Almond Frangipane</h4>
+                        <span class="menu-price">$4.75</span>
+                    </div>
+                    <p class="menu-desc">Double-baked croissant filled with rich almond cream, topped with toasted sliced almonds.</p>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80" alt="Avocado Toast">
+                </div>
+                <div class="menu-card-content">
+                    <div class="menu-header">
+                        <h4 class="menu-title">Sourdough Avocado Toast</h4>
+                        <span class="menu-price">$8.50</span>
+                    </div>
+                    <p class="menu-desc">Toasted sourdough topped with mashed avocado, chili flakes, microgreens, and lemon zest drizzled with extra virgin olive oil.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="reviews" class="testimonials">
+        <div class="section-title">
+            <p>Word on the Street</p>
+            <h2>Customer Stories</h2>
+        </div>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"COPI has quickly become my favorite spot in town. The Madagascar Vanilla Latte paired with their fresh croissants is unmatched."</p>
+                <div class="author">— Sophia M.</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"The aesthetic ambiance and minimalist design make it the absolute perfect remote work spot. Plus, the coffee quality is world class."</p>
+                <div class="author">— Marcus K.</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"Hands down the best pour-over in the city. The baristas know their beans inside out."</p>
+                <div class="author">— Elena R.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="visit">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="footer-logo">COPI.</div>
+                <p>Artisanal brews, thoughtful design, and a place to slow down.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Hours</h4>
+                <p>Monday - Friday: 7:00 AM - 7:00 PM</p>
+                <p>Saturday - Sunday: 8:00 AM - 8:00 PM</p>
+            </div>
+            <div class="footer-col">
+                <h4>Location</h4>
+                <p>124 Brew Street, Creative Quarter</p>
+                <p>Metro Station: Central Plaza</p>
+            </div>
+            <div class="footer-col">
+                <h4>Socials</h4>
+                <a href="#">Instagram</a>
+                <a href="#">Twitter / X</a>
+                <a href="#">Facebook</a>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 COPI Cafe. All rights reserved.
+        </div>
+    </footer>
+
+</body>
+</html>
